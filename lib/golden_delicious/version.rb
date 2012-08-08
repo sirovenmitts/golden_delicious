@@ -1,3 +1,3 @@
-module GoldenDelicious
+class GoldenDelicious
   VERSION = "0.0.1"
 end
