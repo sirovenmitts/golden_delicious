@@ -1,9 +1,11 @@
 require 'golden_delicious/version'
 require 'httparty'
 require 'json'
+require 'memoist'
 
 class GoldenDelicious
 	include HTTParty
+	extend Memoist
 	def initialize dirty_serial_number
 		# Some USB scanners prepend an 'S' to every Apple serial number. This does not happen
 		# with other serial numbers, so I'm assuming it has something to do with the way Apple
@@ -32,6 +34,9 @@ class GoldenDelicious
 		# change in the future. Find some more reliable key in the valid serial number response.
 		!response.has_key?('error_code')
 	end
+
+	# Apple's SelfSolve can take a long time to respond.
+	memoize :valid?
 
 	# Return this serial numer from whence it came (a String)
 	def to_s
