@@ -4,8 +4,11 @@ require File.expand_path('../lib/golden_delicious/version', __FILE__)
 Gem::Specification.new do |gem|
   gem.authors       = ["Kenneth Pullen"]
   gem.email         = ["kenneth.pullen@gmail.com"]
-  gem.description   = %q{Check the validity of an Apple serial number}
-  gem.summary       = %q{Check the validity of an Apple serial number}
+  gem.description   = <<-DESC
+  This gem will check the validity of an Apple serial number, and will pull some
+  extra information from everymac.com.
+  DESC
+  gem.summary       = %q{Get some sweet info about your Apple}
   gem.homepage      = ""
 
   gem.files         = `git ls-files`.split($\)

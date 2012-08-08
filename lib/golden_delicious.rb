@@ -1,7 +1,9 @@
 require 'golden_delicious/version'
+require 'golden_delicious/stats'
 require 'httparty'
 require 'json'
 require 'memoist'
+require 'nokogiri'
 
 class GoldenDelicious
 	include HTTParty
