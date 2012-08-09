@@ -19,6 +19,9 @@ Gem::Specification.new do |gem|
   gem.version       = GoldenDelicious::VERSION
 
   gem.add_development_dependency 'rspec'
+  gem.add_development_dependency 'simplecov'
+  gem.add_development_dependency 'simplecov-gem-adapter'
+  
   gem.add_dependency 'httparty'
   gem.add_dependency 'json'
   gem.add_dependency 'nokogiri'

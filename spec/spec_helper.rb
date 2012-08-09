@@ -15,3 +15,8 @@ RSpec.configure do |config|
   #     --seed 1234
   config.order = 'random'
 end
+
+require 'simplecov'
+require 'simplecov-gem-adapter'
+
+SimpleCov.start 'gem'
