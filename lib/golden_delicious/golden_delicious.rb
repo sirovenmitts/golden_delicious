@@ -13,10 +13,13 @@ module GoldenDelicious
 
 			@apple_info = AppleInfo.new dirty_serial_number
 
+			# Apple embeds a short model number into every serial number. Serial numbers 11 digits
+			# long have 3 digits ids, and 12 digit serial numbers have a 4 digit id. This id is used
+			# by Everymac.
 			short_model = dirty_serial_number[-4..-1]
 			short_model.slice! 0 if dirty_serial_number.length == 11
 
-			@everymac_info = Stats.new short_model
+			@everymac_info = EverymacInfo.new short_model
 		end
 	end
 end
