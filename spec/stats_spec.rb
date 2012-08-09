@@ -1,11 +1,11 @@
 require 'spec_helper'
 require 'golden_delicious/stats'
 
-describe Stats do
+describe GoldenDelicious::Stats do
 	before :all do
-		# This is the model number for a Mid 2007 Macbook. All these
+		# This is the short model number for a Mid 2007 Macbook. All these
 		# stats can be verified at [1]
-		@stats = Stats.new 'Z5W'
+		@stats = GoldenDelicious::Stats.new 'Z5W'
 	end
 	it 'should provide information about device memory' do
 		@stats.memory.slots.should eq 2
