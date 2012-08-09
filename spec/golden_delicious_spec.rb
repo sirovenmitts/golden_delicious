@@ -19,4 +19,8 @@ describe GoldenDelicious::GoldenDelicious do
 	it 'should delegate to Stats' do
 		@gd.identifiers.model.should eq 'A1181'
 	end
+	it 'should remove the superfluous "S" prepended by some serial number scanners' do
+		sn = GoldenDelicious::GoldenDelicious.new 'SW88401231AX'
+		sn.to_s.should eq 'W88401231AX'
+	end
 end

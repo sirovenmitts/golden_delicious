@@ -10,8 +10,4 @@ describe GoldenDelicious::AppleInfo do
 		invalid = GoldenDelicious::AppleInfo.new 'W88401231AX'
 		invalid.valid?.should eq false
 	end
-	it 'should remove the superfluous "S" prepended by some serial number scanners' do
-		sn = GoldenDelicious::AppleInfo.new 'SW88401231AX'
-		sn.to_s.should eq 'W88401231AX'
-	end
 end
