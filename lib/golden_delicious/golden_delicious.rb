@@ -2,7 +2,7 @@ require 'forwardable'
 module GoldenDelicious
 	class GoldenDelicious
 		extend Forwardable
-		def_delegators :@apple_info, :to_s, :valid?
+		def_delegators :@apple_info, :to_s, :valid?, :in_warranty?, :has_applecare?
 		def_delegators :@everymac_info, :memory, :storage, :identifiers
 		def initialize dirty_serial_number
 			# Some USB scanners prepend an 'S' to every Apple serial number. This does not happen
