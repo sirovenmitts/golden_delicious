@@ -12,7 +12,11 @@ module GoldenDelicious
 			dirty_serial_number.slice! 0 if dirty_serial_number[0] == 'S'
 
 			@apple_info = AppleInfo.new dirty_serial_number
-			@everymac_info = Stats.new 'Z5W'
+
+			short_model = dirty_serial_number[-4..-1]
+			short_model.slice! 0 if dirty_serial_number.length == 11
+
+			@everymac_info = Stats.new short_model
 		end
 	end
 end
