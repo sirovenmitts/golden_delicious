@@ -22,8 +22,6 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'simplecov'
   gem.add_development_dependency 'simplecov-gem-adapter'
   
-  gem.add_dependency 'httparty'
-  gem.add_dependency 'json'
   gem.add_dependency 'nokogiri'
   gem.add_dependency 'memoist'
 end

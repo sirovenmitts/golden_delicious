@@ -1,5 +1,5 @@
+require 'open-uri'
 require 'nokogiri'
-require 'httparty'
 
 module GoldenDelicious
 	Memory = Struct.new :slots, :max, :type, :speed
@@ -7,13 +7,11 @@ module GoldenDelicious
 	Identifiers = Struct.new :model, :short_model, :family, :sub_family, :emc, :order
 
 	class EverymacInfo
-		include HTTParty
 		attr_reader :memory, :storage, :identifiers
-		base_uri 'http://everymac.com'
 		def initialize short_model
-			search_results = Nokogiri::HTML self.class.get('/ultimate-mac-lookup/?search_keywords=%s' % short_model).body
+			search_results = Nokogiri::HTML open('http://everymac.com/ultimate-mac-lookup/?search_keywords=%s' % short_model)
 
-			specs_page = Nokogiri::HTML self.class.get(search_results.css('.detail_title:first-child a').first['href']).body
+			specs_page = Nokogiri::HTML open('http://everymac.com/' + search_results.css('.detail_title:first-child a').first['href'])
 
 			# Fetch the memory stats.
 			type, speed = specs_page.css '#specs9-title td:nth-child(even)'
