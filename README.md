@@ -15,7 +15,6 @@ Well then, just do this:
 
 You'll get back an object with the following information:
 
-<<<<<<< HEAD
 <table>
 	<tr>
 		<td>
@@ -119,7 +118,6 @@ Please see lib/golden_delicious/model.rb for more information - it's really simp
 
 If you DON'T know the model identifier but you have a serial number:
 
->>>>>>> a2f51364ce2742739cffb641b3976b3179eea59c
     device = GoldenDelicious::Device.new SERIAL_NUMBER
 
 This object has all of the information that SerialNumber AND Model have! It's awesome!
