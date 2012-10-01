@@ -1,32 +1,104 @@
 # GoldenDelicious
 ## Tasty info about an Apple serial number
 
-Apple tries really hard to make it impossible to know anything about a serial number. Additionally, Apple uses about 5 different ways to identify a computer. This gem aims to make things a little easier, by pulling info from 2 different sources (maybe more in the future).
+Apple tries really hard to make it impossible to know anything about a serial number. Additionally, Apple uses about 5 different ways to identify a computer. This gem aims to make things a little easier.
 
-NOTE: Every time you use this gem you make at least 3 HTTP requests.
+NOTE: Every time you use this gem you make at least 2 HTTP requests.
 
-### In the beginning
+## Usage
 
-A while ago I found out that a GET to https://selfsolve.apple.com/warrantyChecker.do with your serial number as a parameter would return a big blob of JSON with information about your device. This was great, but Apple doesn't provide all the info I needed. So, I kind of gave up for a while. 
+### I only want information about a serial number
 
-### Things start to look up
+Well then, just do this:
 
-Then I found out that everymac.com has most of the rest of the information I need; it just needs to be extracted.
+    serial_number = GoldenDelicious::SerialNumber.new SERIAL_NUMBER
 
-So, there we go. You can use:
+You'll get back an object with the following information:
 
-    GoldenDelicious::GoldenDelicious.new SERIAL_NUMBER_GOES_HERE
+<table>
+	<tr>
+		<td>
+			serial_number.location
+		</td>
+		<td>
+			The code for the plant this computer was manufactured at.
+		</td>
+	</tr>
+	<tr>
+		<td>
+			serial_number.year
+		</td>
+		<td>
+			A code indicating what year this computer was manufactured.
+		</td>
+	</tr>
+	<tr>
+		<td>
+			serial_number.week
+		</td>
+		<td>
+			The week this computer was manufactured.
+		</td>
+	</tr>
+	<tr>
+		<td>
+			serial_number.id
+		</td>
+		<td>
+			The unique identifier for this computer.
+		</td>
+	</tr>
+	<tr>
+		<td>
+			serial_number.mode
+		</td>
+		<td>
+			The computer's model identifier (e.g. Z5W or 1AX).
+		</td>
+	</tr>
+</table>
+### I really only care about the computer's model
 
-And that will probably work.
+If you already know the model identifier then just do this:
 
-If you don't care about all the information (for example, you want only to know if a serial number is valid) then you can use either:
+    model = GoldenDelicious::Model.new MODEL_IDENTIFIER
 
-    GoldenDelicious::AppleInfo.new SERIAL_NUMBER_ALSO_GOES_HERE
+You'll get an object with the following information:
+<table>
+	<tr>
+		<td>
+			model.memory 
+		</td>
+		<td>
+			Information about the RAM that this computer uses.
+		</td>
+	</tr>
+	<tr>
+		<td>
+			model.storage 
+		</td>
+		<td>
+			Information about the hard drive in this computer.
+		</td>
+	</tr>
+	<tr>
+		<td>
+			model.identifiers
+		</td>
+		<td>
+			Most of the identifiers Apple uses for this model.
+		</td>
+	</tr>
+</table>
 
- OR:
+Please see lib/golden_delicious/model.rb for more information - it's really simple, though quite ugly.
 
-     GoldenDelicious::EverymacInfo.new SHORT_MODEL_GOES_HERE
+If you DON'T know the model identifier but you have a serial number:
 
-### In the end
+    device = GoldenDelicious::Device.new SERIAL_NUMBER
+
+This object has all of the information that SerialNumber AND Model have! It's awesome!
+
+## Help?
 
 This is just a gem I need for work projects, but if you want to help me, please feel free. Right now my tests woefully brittle: I don't have any serial numbers to test edge cases (older computers, iPhones, iPods, etc.). Please feel free to send me your serial number; I won't do anything weird with it - just put it in some tests to ensure that this gem does what it's supposed to.
