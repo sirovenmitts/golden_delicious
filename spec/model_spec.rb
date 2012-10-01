@@ -1,11 +1,11 @@
 require 'spec_helper'
-require 'golden_delicious/everymac_info'
+require 'golden_delicious/model'
 
-describe GoldenDelicious::EverymacInfo do
+describe GoldenDelicious::Model do
 	before :all do
 		# This is the short model number for a Mid 2007 Macbook. All these
 		# stats can be verified at [1]
-		@stats = GoldenDelicious::EverymacInfo.new 'Z5W'
+		@stats = GoldenDelicious::Model.new 'Z5W'
 	end
 	it 'should provide information about device memory' do
 		@stats.memory.slots.should eq 2
@@ -25,7 +25,6 @@ describe GoldenDelicious::EverymacInfo do
 		@stats.identifiers.emc.should eq '2139'
 		
 		@stats.identifiers.model.should eq 'A1181'
-		@stats.identifiers.short_model.should eq 'Z5W'
 	end
 end
 __END__

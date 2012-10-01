@@ -18,7 +18,7 @@ module GoldenDelicious
 			short_model = dirty_serial_number[-4..-1]
 			short_model.slice! 0 if dirty_serial_number.length == 11
 
-			@everymac_info = EverymacInfo.new short_model
+			@everymac_info = Model.new short_model
 		end
 		def to_s
 			@serial_number

@@ -4,9 +4,9 @@ require 'nokogiri'
 module GoldenDelicious
 	Memory = Struct.new :slots, :max, :type, :speed
 	Storage = Struct.new :interface, :original_size
-	Identifiers = Struct.new :model, :short_model, :family, :sub_family, :emc, :order
+	Identifiers = Struct.new :model, :family, :sub_family, :emc, :order
 
-	class EverymacInfo
+	class Model
 		attr_reader :memory, :storage, :identifiers
 		def initialize short_model
 			search_results = Nokogiri::HTML open('http://everymac.com/ultimate-mac-lookup/?search_keywords=%s' % short_model)
@@ -28,7 +28,7 @@ module GoldenDelicious
 			model_emc_tuple, family = specs_page.css '#specs25-title td:nth-child(even)'
 			model = model_emc_tuple.content[/(\w+)/]
 			emc = model_emc_tuple.content[/\s(\d+)/, 1]
-			@identifiers = Identifiers.new model, short_model, family.content, sub_family.content, emc, order.content
+			@identifiers = Identifiers.new model, family.content, sub_family.content, emc, order.content
 		end
 	end
 end
