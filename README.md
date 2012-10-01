@@ -95,29 +95,6 @@ Please see lib/golden_delicious/model.rb for more information - it's really simp
 
 If you DON'T know the model identifier but you have a serial number:
 
-=======
-serial_number.location 	| The code for the plant this computer was manufactured at.
-serial_number.year 		| A code indicating what year this computer was manufactured.
-serial_number.week 		| The week this computer was manufactured.
-serial_number.id 		| The unique identifier for this computer.
-serial_number.model 	| The computer's model identifier (e.g. Z5W or 1AX).
-
-### I really only care about the computer's model
-
-If you already know the model identifier then just do this:
-
-    model = GoldenDelicious::Model.new MODEL_IDENTIFIER
-
-You'll get an object with the following information:
-
-model.memory 		| Information about the RAM that this computer uses.
-model.storage 		| Information about the hard drive in this computer.
-model.identifiers 	| Most of the identifiers Apple uses for this model.
-
-Please see lib/golden_delicious/model.rb for more information - it's really simple, though quite ugly.
-
-If you DON'T know the model identifier but you have a serial number:
-
     device = GoldenDelicious::Device.new SERIAL_NUMBER
 
 This object has all of the information that SerialNumber AND Model have! It's awesome!
